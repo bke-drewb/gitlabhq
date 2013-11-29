@@ -139,3 +139,21 @@ Processing group/xyz.git
  * Created xyz (group/xyz.git)
 [...]
 ```
+
+### Rebuild/Resync SSH keys
+
+Sometimes the authorized_keys file may become out of sync with the GitLab database. 
+If this happens some users may get "Access denied" messages when trying to pull/push from the remote repository. Run this rake task to rebuild/resync the authorized_keys file.
+
+```
+bundle exec rake gitlab:shell:setup RAISL_ENV=production
+```
+
+Example output:
+```
+This will rebuild an authorized_keys file.
+You will lose any data stored in authorized_keys file.
+Do you want to continue (yes/no)? yes
+
+............................
+```
