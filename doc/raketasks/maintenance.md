@@ -1,10 +1,10 @@
 ## Table of Contents
 
-* [#gather-information-about-gitlab-and-the-system-it-runs-on](Gather information about GitLab and the system it runs on)
-* [#check-gitlab-configuration](Check GitLab configuration)
-* [#re-create-satellite-repos](Re-create satellite repos)
-* [#import-bare-repositories-into-gitlab-project-instance](Import bare repositories into GitLab project instance)
-* [#rebuildresync-ssh-keys](Rebuild/Resync SSH keys)
+* [Gather information about GitLab and the system it runs on](#gather-information-about-gitlab-and-the-system-it-runs-on)
+* [Check GitLab configuration](#check-gitlab-configuration)
+* [Re-create satellite repos](#re-create-satellite-repos)
+* [Import bare repositories into GitLab project instance](#import-bare-repositories-into-gitlab-project-instance)
+* [Rebuild/Resync SSH keys](#rebuildresync-ssh-keys)
 
 
 ### Gather information about GitLab and the system it runs on
