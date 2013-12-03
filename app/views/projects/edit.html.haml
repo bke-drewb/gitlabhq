@@ -90,12 +90,12 @@
 
     %center.light.prepend-top-20.padded
       %h3
-        %i.icon-warning-sign
+        %i.glyphicon.glyphicon-warning-sign
         Dangerous settings
       %p Project settings below may result in data loss!
       = link_to '#', class: 'btn js-toggle-visibility-link' do
         Show it to me
-        %i.icon-chevron-down
+        %i.glyphicon.glyphicon-chevron-down
 
     .js-toggle-visibility-container.hide
       - if can?(current_user, :change_namespace, @project)

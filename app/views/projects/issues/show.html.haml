@@ -8,7 +8,7 @@
   %span.pull-right
     - if can?(current_user, :write_issue, @project)
       = link_to new_project_issue_path(@project), class: "btn grouped", title: "New Issue", id: "new_issue_link" do
-        %i.icon-plus
+        %i.glyphicon.glyphicon-plus
         New Issue
     - if can?(current_user, :modify_issue, @issue)
       - if @issue.closed?
@@ -17,7 +17,7 @@
         = link_to 'Close', project_issue_path(@project, @issue, issue: {state_event: :close }, status_only: true), method: :put, class: "btn grouped close_issue", title: "Close Issue"
 
       = link_to edit_project_issue_path(@project, @issue), class: "btn grouped" do
-        %i.icon-edit
+        %i.glyphicon.glyphicon-edit
         Edit
 
 .pull-right
@@ -51,7 +51,7 @@
     .pull-right
       - @issue.labels.each do |label|
         %span{class: "label #{label_css_class(label.name)}"}
-          %i.icon-tag
+          %i.glyphicon.glyphicon-tag
           = label.name
         &nbsp;
 

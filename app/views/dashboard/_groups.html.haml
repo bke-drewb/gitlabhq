@@ -4,7 +4,7 @@
     - if current_user.can_create_group?
       %span.pull-right
         = link_to new_group_path, class: "btn btn-new" do
-          %i.icon-plus
+          %i.glyphicon.glyphicon-plus
           New group
   %ul.well-list.dash-list
     - groups.each do |group|
@@ -13,7 +13,7 @@
           %span.group-name.filter-title
             = truncate(group.name, length: 35)
           %span.arrow
-            %i.icon-angle-right
+            %i.glyphicon.glyphicon-angle-right
     - if groups.blank?
       %li
         %h3.nothing_here_message You have no groups yet.

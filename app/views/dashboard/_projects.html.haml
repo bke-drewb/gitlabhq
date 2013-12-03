@@ -4,7 +4,7 @@
     - if current_user.can_create_project?
       %span.pull-right
         = link_to new_project_path, class: "btn btn-new" do
-          %i.icon-plus
+          %i.glyphicon.glyphicon-plus
           New project
 
   %ul.well-list.dash-list
@@ -22,4 +22,4 @@
         .pull-right.append-right-10
           = link_to projects_dashboard_path do
             Show all
-            %i.icon-angle-right
+            %i.glyphicon.glyphicon-angle-right

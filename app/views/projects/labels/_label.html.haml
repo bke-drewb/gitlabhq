@@ -1,7 +1,7 @@
 - frequency = @project.issues.tagged_with(label.name).count
 %li
   %span{class: "label #{label_css_class(label.name)}"}
-    %i.icon-tag
+    %i.glyphicon.glyphicon-tag
   - if frequency.zero?
     %span.light= label.name
   - else

@@ -8,7 +8,7 @@
 
   .pull-right
     = link_to edit_admin_user_path(@user), class: "btn grouped" do
-      %i.icon-edit
+      %i.glyphicon.glyphicon-edit
       Edit
 %hr
 
@@ -119,7 +119,7 @@
                 %span.light= user_group.human_access
                 - unless user_group.owner?
                   = link_to group_users_group_path(group, user_group), confirm: remove_user_from_group_message(group, @user), method: :delete, remote: true, class: "btn-tiny btn btn-remove", title: 'Remove user from group' do
-                    %i.icon-remove.icon-white
+                    %i.glyphicon.glyphicon-remove.icon-white
 
     .ui-box
       .title Projects (#{@projects.count})
@@ -139,6 +139,6 @@
 
                   - if tm.respond_to? :project
                     = link_to project_team_member_path(project, @user), confirm: remove_from_project_team_message(project, @user), remote: true, method: :delete, class: "btn-tiny btn btn-remove", title: 'Remove user from project' do
-                      %i.icon-remove
+                      %i.glyphicon.glyphicon-remove
 
 

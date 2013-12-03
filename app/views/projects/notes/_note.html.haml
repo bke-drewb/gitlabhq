@@ -2,16 +2,16 @@
   .note-header
     .note-actions
       = link_to "##{dom_id(note)}", name: dom_id(note) do
-        %i.icon-link
+        %i.glyphicon.glyphicon-link
         Link here
       &nbsp;
       - if(note.author_id == current_user.try(:id)) || can?(current_user, :admin_note, @project)
         = link_to "#", title: "Edit comment", class: "js-note-edit" do
-          %i.icon-edit
+          %i.glyphicon.glyphicon-edit
           Edit
         &nbsp;
         = link_to project_note_path(@project, note), title: "Remove comment", method: :delete, confirm: 'Are you sure you want to remove this comment?', remote: true, class: "danger js-note-delete" do
-          %i.icon-trash.cred
+          %i.glyphicon.glyphicon-trash.cred
           Remove
     = image_tag avatar_icon(note.author_email), class: "avatar s32"
     = link_to_member(@project, note.author, avatar: false)
@@ -20,11 +20,11 @@
 
     - if note.upvote?
       %span.vote.upvote.label.label-success
-        %i.icon-thumbs-up
+        %i.glyphicon.glyphicon-thumbs-up
         \+1
     - if note.downvote?
       %span.vote.downvote.label.label-error
-        %i.icon-thumbs-down
+        %i.glyphicon.glyphicon-thumbs-down
         \-1
 
 
@@ -42,7 +42,7 @@
 
           .note-form-option
             %a.choose-btn.btn.btn-small.js-choose-note-attachment-button
-              %i.icon-paper-clip
+              %i.glyphicon.glyphicon-paper-clip
               %span Choose File ...
             &nbsp;
             %span.file_name.js-attachment-filename File name...
@@ -58,9 +58,9 @@
           = image_tag note.attachment.url, class: 'note-image-attach'
       .attachment.pull-right
         = link_to note.attachment.secure_url, target: "_blank" do
-          %i.icon-paper-clip
+          %i.glyphicon.glyphicon-paper-clip
           = note.attachment_identifier
           = link_to delete_attachment_project_note_path(@project, note),
             title: "Delete this attachment", method: :delete, remote: true, confirm: 'Are you sure you want to remove the attachment?', class: "danger js-note-attachment-delete" do
-            %i.icon-trash.cred
+            %i.glyphicon.glyphicon-trash.cred
   .clear

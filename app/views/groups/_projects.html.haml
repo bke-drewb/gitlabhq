@@ -4,7 +4,7 @@
     - if can? current_user, :manage_group, @group
       %span.pull-right
         = link_to new_project_path(namespace_id: @group.id), class: "btn btn-new" do
-          %i.icon-plus
+          %i.glyphicon.glyphicon-plus
           New project
   %ul.well-list
     - if projects.blank?
@@ -15,7 +15,7 @@
           %span.project-name
             = truncate(project.name, length: 25)
           %span.arrow
-            %i.icon-angle-right
+            %i.glyphicon.glyphicon-angle-right
           %span.last-activity
             %span Last activity:
             %span.date= project_last_activity(project)

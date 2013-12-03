@@ -3,11 +3,11 @@
     %ul.nav.nav-pills.nav-stacked.nav-stacked-menu
       %li.active
         = link_to '#tab-edit', 'data-toggle' => 'tab' do
-          %i.icon-edit
+          %i.glyphicon.glyphicon-edit
           Edit Group
       %li
         = link_to '#tab-projects', 'data-toggle' => 'tab' do
-          %i.icon-folder-close
+          %i.glyphicon.glyphicon-folder-close
           Projects
       %li
         = link_to 'Remove', '#tab-remove', 'data-toggle' => 'tab'
@@ -46,7 +46,7 @@
             - if can? current_user, :manage_group, @group
               %span.pull-right
                 = link_to new_project_path(namespace_id: @group.id), class: "btn btn-tiny" do
-                  %i.icon-plus
+                  %i.glyphicon.glyphicon-plus
                   New Project
           %ul.well-list
             - @group.projects.each do |project|

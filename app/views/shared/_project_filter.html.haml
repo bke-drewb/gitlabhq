@@ -26,7 +26,7 @@
   %fieldset
     - if %w(state scope milestone_id assignee_id label_name).select { |k| params[k].present? }.any?
       = link_to project_entities_path, class: 'cgray pull-right' do
-        %i.icon-remove
+        %i.glyphicon.glyphicon-remove
         %strong Clear filter
 
 

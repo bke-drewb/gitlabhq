@@ -1,6 +1,6 @@
 - if can? current_user, :write_merge_request, @project
   = link_to new_project_merge_request_path(@project), class: "pull-right btn btn-new", title: "New Merge Request" do
-    %i.icon-plus
+    %i.glyphicon.glyphicon-plus
     New Merge Request
 %h3.page-title
   Merge Requests
@@ -17,7 +17,7 @@
           %span Filter by
           .dropdown.inline.prepend-left-10
             %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
-              %i.icon-user
+              %i.glyphicon.glyphicon-user
               %span.light assignee:
               - if @assignee.present?
                 %strong= @assignee.name
@@ -40,7 +40,7 @@
 
           .dropdown.inline.prepend-left-10
             %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
-              %i.icon-time
+              %i.glyphicon.glyphicon-time
               %span.light milestone:
               - if @milestone.present?
                 %strong= @milestone.title

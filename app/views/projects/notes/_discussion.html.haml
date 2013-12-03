@@ -3,10 +3,10 @@
   .discussion-header
     .discussion-actions
       = link_to "javascript:;", class: "js-details-target turn-on js-toggler-target" do
-        %i.icon-eye-close
+        %i.glyphicon.glyphicon-eye-close
         Hide discussion
       = link_to "javascript:;", class: "js-details-target turn-off js-toggler-target" do
-        %i.icon-eye-open
+        %i.glyphicon.glyphicon-eye-open
         Show discussion
     = image_tag avatar_icon(note.author_email), class: "avatar s32"
     %div
@@ -18,7 +18,7 @@
         - else
           started
           %strong
-            %i.icon-remove
+            %i.glyphicon.glyphicon-remove
             outdated
           discussion on this merge request diff
       - elsif note.for_commit?
@@ -58,6 +58,6 @@
       .note
         %em Hidden discussion.
         = link_to "javascript:;", class: "js-details-target js-toggler-target" do
-          %i.icon-eye-open
+          %i.glyphicon.glyphicon-eye-open
           Show
 

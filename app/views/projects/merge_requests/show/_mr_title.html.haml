@@ -17,7 +17,7 @@
       - if @merge_request.opened?
         .left.btn-group
           %a.btn.grouped.dropdown-toggle{ data: {toggle: :dropdown} }
-            %i.icon-download-alt
+            %i.glyphicon.glyphicon-download-alt
             Download as
             %span.caret
           %ul.dropdown-menu
@@ -27,7 +27,7 @@
         = link_to 'Close', project_merge_request_path(@project, @merge_request, merge_request: {state_event: :close }), method: :put, class: "btn grouped btn-close", title: "Close merge request"
 
         = link_to edit_project_merge_request_path(@project, @merge_request), class: "btn grouped", id:"edit_merge_request" do
-          %i.icon-edit
+          %i.glyphicon.glyphicon-edit
           Edit
 
 .pull-right

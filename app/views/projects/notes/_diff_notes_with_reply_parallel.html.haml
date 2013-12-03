@@ -10,7 +10,7 @@
       = render "projects/notes/discussion_reply_button", note: note1
     %td.notes_line2
       %span.btn.disabled.parallel-comment
-        %i.icon-comment
+        %i.glyphicon.glyphicon-comment
         = notes1.count
   - else
     %td= ""
@@ -23,7 +23,7 @@
   - if note2
     %td.notes_line
       %span.btn.disabled.parallel-comment
-        %i.icon-comment
+        %i.glyphicon.glyphicon-comment
         = notes2.count
     %td.notes_content
       %ul.notes{ rel: note2.discussion_id }

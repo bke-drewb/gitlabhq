@@ -17,7 +17,7 @@
         .controls
           = text_field_tag :extended_sha1, @options[:extended_sha1], placeholder: "Input an extended SHA1 syntax", class: "search-input input-xlarge"
           = button_tag type: 'submit', class: 'btn vtop' do
-            %i.icon-search
+            %i.glyphicon.glyphicon-search
           - @options.each do |key, value|
             = hidden_field_tag(key, value, id: nil) unless key == "extended_sha1"
 

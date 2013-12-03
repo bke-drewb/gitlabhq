@@ -15,7 +15,7 @@
         %span Filter by
         .dropdown.inline.prepend-left-10
           %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
-            %i.icon-tags
+            %i.glyphicon.glyphicon-tags
             %span.light labels:
             - if params[:label_name].present?
               %strong= params[:label_name]
@@ -30,11 +30,11 @@
               %li
                 = link_to project_filter_path(label_name: label_name) do
                   %span{class: "label #{label_css_class(label_name)}"}
-                    %i.icon-tag
+                    %i.glyphicon.glyphicon-tag
                   = label_name
         .dropdown.inline.prepend-left-10
           %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
-            %i.icon-user
+            %i.glyphicon.glyphicon-user
             %span.light assignee:
             - if @assignee.present?
               %strong= @assignee.name
@@ -57,7 +57,7 @@
 
         .dropdown.inline.prepend-left-10
           %a.dropdown-toggle.btn.btn-small{href: '#', "data-toggle" => "dropdown"}
-            %i.icon-time
+            %i.glyphicon.glyphicon-time
             %span.light milestone:
             - if @milestone.present?
               %strong= @milestone.title

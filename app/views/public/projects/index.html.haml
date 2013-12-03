@@ -38,7 +38,7 @@
             &middot;
             = link_to pluralize(project.repository.tag_names.count, 'tag'), project_tags_path(project)
           - else
-            %i.icon-warning-sign
+            %i.glyphicon.glyphicon-warning-sign
             Empty repository
     - unless @projects.present?
       %h3.nothing_here_message No public projects

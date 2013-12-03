@@ -17,7 +17,7 @@
         .mr_source_commit.prepend-top-10
       .col-md-2
         %h2.merge-request-angle.light
-          %i.icon-long-arrow-right
+          %i.glyphicon.glyphicon-long-arrow-right
       .col-md-5
         .clearfix
           .pull-left
@@ -37,12 +37,12 @@
     .control-group
       .left
         = f.label :assignee_id do
-          %i.icon-user
+          %i.glyphicon.glyphicon-user
           Assign to
         .controls= f.select(:assignee_id, @project.team.members.sort_by(&:name).map {|p| [ p.name, p.id ] }, { include_blank: "Select user" }, {class: 'chosen col-md-3'})
       .left
         = f.label :milestone_id do
-          %i.icon-time
+          %i.glyphicon.glyphicon-time
           Milestone
         .controls= f.select(:milestone_id, @project.milestones.active.all.map {|p| [ p.title, p.id ] }, { include_blank: "Select milestone" }, {class: 'chosen'})
     .control-group

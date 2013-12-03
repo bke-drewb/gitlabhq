@@ -8,7 +8,7 @@
   = nav_link(path: 'protected_branches#index') do
     = link_to project_protected_branches_path(@project) do
       Protected
-      %i.icon-lock
+      %i.glyphicon.glyphicon-lock
       .pull-right
         = @project.protected_branches.count
 
@@ -22,6 +22,6 @@
 %hr
 - if can? current_user, :push_code, @project
   = link_to new_project_branch_path(@project), class: 'btn btn-create' do
-    %i.icon-add-sign
+    %i.glyphicon.glyphicon-add-sign
     New branch
 

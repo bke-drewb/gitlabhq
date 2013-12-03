@@ -13,13 +13,13 @@
     - if current_user
       %li
         = link_to project_issues_path(@project, :atom, { private_token: current_user.private_token }) do
-          %i.icon-rss
+          %i.glyphicon.glyphicon-rss
 
     %li.pull-right
       .pull-right
         - if can? current_user, :write_issue, @project
           = link_to new_project_issue_path(@project, issue: { assignee_id: params[:assignee_id], milestone_id: params[:milestone_id]}), class: "btn btn-new pull-right", title: "New Issue", id: "new_issue_link" do
-            %i.icon-plus
+            %i.glyphicon.glyphicon-plus
             New Issue
         = form_tag project_issues_path(@project), method: :get, id: "issue_search_form", class: 'pull-right issue-search-form'  do
           = search_field_tag :issue_search, nil, { placeholder: 'Filter by title or description', class: 'input-xpadding issue_search input-xlarge append-right-10 search-text-input' }

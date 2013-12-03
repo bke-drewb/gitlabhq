@@ -10,7 +10,7 @@
     .clearfix
       - if @project.forked_from_project
         .alert.alert-success
-          %i.icon-code-fork.project-fork-icon
+          %i.glyphicon.glyphicon-code-fork.project-fork-icon
           Forked from:
           %br
           = link_to @project.forked_from_project.name_with_namespace, project_path(@project.forked_from_project)
@@ -18,16 +18,16 @@
         - if current_user && can?(current_user, :fork_project, @project) && @project.namespace != current_user.namespace
           - if current_user.already_forked?(@project)
             = link_to project_path(current_user.fork_of(@project)), class: 'btn btn-block' do
-              %i.icon-compass
+              %i.glyphicon.glyphicon-compass
               Go to fork
           - else
             = link_to fork_project_path(@project), title: "Fork", class: "btn btn-block", method: "POST" do
-              %i.icon-code-fork
+              %i.glyphicon.glyphicon-code-fork
               Fork repository
 
         - if can? current_user, :download_code, @project
           = link_to archive_project_repository_path(@project), class: "btn btn-block" do
-            %i.icon-download-alt
+            %i.glyphicon.glyphicon-download-alt
             %span Download
           = link_to project_compare_index_path(@project, from: @repository.root_ref, to: @ref || @repository.root_ref), class: 'btn btn-block' do
             Compare code

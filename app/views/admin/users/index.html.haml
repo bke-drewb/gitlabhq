@@ -4,7 +4,7 @@
       = form_tag admin_users_path, method: :get, class: 'form-inline' do
         = search_field_tag :name, params[:name], placeholder: 'Name, email or username', class: 'input-xpadding col-md-2'
         = button_tag type: 'submit', class: 'btn btn-primary' do
-          %i.icon-search
+          %i.glyphicon.glyphicon-search
       %ul.nav.nav-pills.nav-stacked
         %li{class: "#{'active' unless params[:filter]}"}
           = link_to admin_users_path do
@@ -35,9 +35,9 @@
         - @users.each do |user|
           %li
             - if user.blocked?
-              %i.icon-lock.cred
+              %i.glyphicon.glyphicon-lock.cred
             - else
-              %i.icon-user.cgreen
+              %i.glyphicon.glyphicon-user.cgreen
             = link_to user.name, [:admin, user]
             - if user.admin?
               %strong.cred (Admin)
@@ -45,7 +45,7 @@
               %span.cred It's you!
             .pull-right
               %span.light
-                %i.icon-envelope
+                %i.glyphicon.glyphicon-envelope
                 = mail_to user.email, user.email, class: 'light'
               &nbsp;
               = link_to 'Edit', edit_admin_user_path(user), id: "edit_#{dom_id(user)}", class: "btn btn-small"

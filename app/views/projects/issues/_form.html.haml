@@ -17,7 +17,7 @@
         .control-group
           .issue_assignee.pull-left
             = f.label :assignee_id do
-              %i.icon-user
+              %i.glyphicon.glyphicon-user
               Assign to
             .controls
               .pull-left
@@ -27,14 +27,14 @@
                 = link_to 'Assign to me', '#', class: 'btn btn-small assign-to-me-link'
           .issue_milestone.pull-left
             = f.label :milestone_id do
-              %i.icon-time
+              %i.glyphicon.glyphicon-time
               Milestone
             .controls= f.select(:milestone_id, @project.milestones.active.all.collect {|p| [ p.title, p.id ] }, { include_blank: "Select milestone" }, {class: 'chosen'})
 
       .ui-box-bottom
         .control-group
           = f.label :label_list do
-            %i.icon-tag
+            %i.glyphicon.glyphicon-tag
             Labels
           .controls
             = f.text_field :label_list, maxlength: 2000, class: "input-xxlarge"

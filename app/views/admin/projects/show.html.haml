@@ -1,7 +1,7 @@
 %h3.page-title
   Project: #{@project.name_with_namespace}
   = link_to edit_project_path(@project), class: "btn pull-right" do
-    %i.icon-edit
+    %i.glyphicon.glyphicon-edit
     Edit
 %hr
 .row
@@ -92,7 +92,7 @@
           group members (#{@group.users_groups.count})
           .pull-right
             = link_to admin_group_path(@group), class: 'btn btn-small' do
-              %i.icon-edit
+              %i.glyphicon.glyphicon-edit
         %ul.well-list
           - @group.users_groups.order('group_access DESC').each do |member|
             = render 'users_groups/users_group', member: member, show_controls: false
@@ -104,7 +104,7 @@
           (#{@project.users.count})
         .pull-right
           = link_to project_team_index_path(@project), class: "btn btn-tiny" do
-            %i.icon-edit
+            %i.glyphicon.glyphicon-edit
             Manage Access
       %ul.well-list.team_members
         - @project.users_projects.each do |users_project|
@@ -118,4 +118,4 @@
               - else
                 %span.light= users_project.human_access
                 = link_to project_team_member_path(@project, user), confirm: remove_from_project_team_message(@project, user), method: :delete, remote: true, class: "btn btn-small btn-remove" do
-                  %i.icon-remove
+                  %i.glyphicon.glyphicon-remove

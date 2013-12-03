@@ -1,6 +1,6 @@
 %ul.breadcrumb
   %li
-    %i.icon-angle-right
+    %i.glyphicon.glyphicon-angle-right
     = link_to project_tree_path(@project, @ref) do
       = @project.path
   - tree_breadcrumbs(@tree, 6) do |title, path|
@@ -19,7 +19,7 @@
 %div#tree-content-holder.tree-content-holder
   .file-holder
     .file-title
-      %i.icon-file
+      %i.glyphicon.glyphicon-file
       %span.file_name
         = blob.name
         %small= number_to_human_size blob.size
