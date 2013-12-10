@@ -161,8 +161,8 @@ ActiveRecord::Schema.define(:version => 20131202192556) do
     t.string   "line_code"
     t.string   "commit_id"
     t.integer  "noteable_id"
-    t.boolean  "system",        :default => false, :null => false
     t.text     "st_diff"
+    t.boolean  "system",        :default => false, :null => false
   end
 
   add_index "notes", ["author_id"], :name => "index_notes_on_author_id"
