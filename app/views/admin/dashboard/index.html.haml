@@ -127,6 +127,15 @@
       %span.pull-right
         = Gitlab::Shell.new.version
     %p
+      GitLab API
+      %span.pull-right
+        = API::API::version
+    %p
       Ruby
       %span.pull-right
         #{RUBY_VERSION}p#{RUBY_PATCHLEVEL}
+
+    %p
+      Rails
+      %span.pull-right
+        #{Rails::VERSION::STRING}

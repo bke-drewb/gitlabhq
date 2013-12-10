@@ -8,7 +8,7 @@ def linux_only(require_as)
   RUBY_PLATFORM.include?('linux') && require_as
 end
 
-gem "rails", "3.2.15"
+gem "rails", "3.2.16"
 
 # Supported DBs
 gem "mysql2", group: :mysql
@@ -44,6 +44,7 @@ gem "gitlab-linguist", "~> 2.9.6", require: "linguist"
 # API
 gem "grape", "~> 0.4.1"
 gem "grape-entity", "~> 0.3.0"
+gem 'rack-cors', require: 'rack/cors'
 
 # Format dates and times
 # based on human-friendly examples

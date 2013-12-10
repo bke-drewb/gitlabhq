@@ -71,13 +71,23 @@ module Gitlab
 
     # Uncomment and customize the last line to run in a non-root path
     # WARNING: We recommend creating a FQDN to host GitLab in a root path instead of this.
-    # Note that three settings need to be changed for this to work.
+    # Note that four settings need to be changed for this to work.
     # 1) In your application.rb file: config.relative_url_root = "/gitlab"
     # 2) In your gitlab.yml file: relative_url_root: /gitlab
     # 3) In your unicorn.rb: ENV['RAILS_RELATIVE_URL_ROOT'] = "/gitlab"
+    # 4) In ../gitlab-shell/config.yml: gitlab_url: "http://127.0.0.1/gitlab"
+    # To update the path, run: sudo -u git -H bundle exec rake assets:precompile RAILS_ENV=production
     #
     # config.relative_url_root = "/gitlab"
 
     config.middleware.use Rack::Attack
+
+    # Allow access to GitLab API from other domains
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '/api/*', headers: :any, methods: [:get, :post, :options, :put]
+      end
+    end
   end
 end
