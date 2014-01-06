@@ -3,6 +3,7 @@
   min-width: 100px;
 
   .chosen-single {
+    height: 26px;
     background: #EEE !important;
     border: 1px solid #DDD !important;
     @include box-shadow(none !important);
@@ -50,4 +51,53 @@
 
 .chosen-container .chosen-drop .chosen-search input {
   background-position-y: -24px !important;
+}
+
+.chosen-compact {
+  max-width: 170px !important;
+}
+
+select {
+  &.chosen {
+    width: 100px;
+  }
+
+  &.chosen-sm {
+    width: 100px;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  select {
+    &.chosen {
+      width: 150px;
+    }
+    &.chosen-sm {
+      width: 120px;
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: $screen-md-min) {
+  select {
+    &.chosen {
+      width: 170px;
+    }
+    &.chosen-sm {
+      width: 140px;
+    }
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: $screen-lg-min) {
+  select {
+    &.chosen {
+      width: 200px;
+    }
+    &.chosen-sm {
+      width: 150px;
+    }
+  }
 }

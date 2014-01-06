@@ -6,6 +6,7 @@ html {
 
 body {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin-bottom: 20px;
 }
 
@@ -118,18 +119,6 @@ p.time {
   margin: 30px 3px 3px 2px;
 }
 
-.search-holder {
-  label, input {
-     height: 30px;
-     padding: 0;
-     font-size: 14px;
-  }
-  label {
-    line-height: 30px;
-    color: #666;
-  }
-}
-
 .highlight {
   text-shadow: none;
 }
@@ -208,7 +197,7 @@ li.note {
 }
 
 .git_error_tips {
-  @extend .span6;
+  @extend .col-md-6;
   text-align: left;
   margin-top: 40px;
   pre {
@@ -327,11 +316,6 @@ img.emoji {
   margin-bottom: 10px;
 }
 
-.group-name {
-  font-size: 14px;
-  line-height: 24px;
-}
-
 table {
   td.permission-x {
     background: #D9EDF7 !important;
@@ -359,6 +343,11 @@ table {
   text-align: center;
   background: #555;
   color: #BBB;
+}
+
+.broadcast-message-preview {
+  @extend .broadcast-message;
+  margin-bottom: 20px;
 }
 
 .ajax-users-select {
@@ -392,5 +381,11 @@ table {
   .namespace-path {
     margin-left: 10px;
     font-weight: bolder;
+  }
+}
+
+.side-filters {
+  fieldset {
+    margin-bottom: 15px;
   }
 }

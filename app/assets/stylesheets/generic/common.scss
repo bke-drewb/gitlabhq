@@ -20,6 +20,7 @@
 .append-right-10 { margin-right:10px }
 .append-right-20 { margin-right:20px }
 .append-bottom-10 { margin-bottom:10px }
+.append-bottom-15 { margin-bottom:15px }
 .append-bottom-20 { margin-bottom:20px }
 .inline { display: inline-block }
 
@@ -69,12 +70,6 @@
   }
 }
 
-.pagination ul > li > a, .pagination ul > li >span {
-  @include linear-gradient(#f1f1f1, #e1e1e1);
-  color: #333;
-  text-shadow: 0 1px 1px #FFF;
-}
-
 pre.well-pre {
   border: 1px solid #EEE;
   background: #f9f9f9;
@@ -90,29 +85,14 @@ pre.well-pre {
   @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15));
 }
 
-.label {
-  padding: 2px 4px;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: normal;
-
-  &.label-gray {
-    background-color: #eee;
-    color: #999;
-    text-shadow: none;
-  }
-}
-
 /** Big Labels **/
 .state-label {
   font-size: 14px;
-  padding: 5px 15px;
+  padding: 6px 25px;
   text-align: center;
-  float: right;
-  position: relative;
-  top: -5px;
   @include border-radius(4px);
   text-shadow: none;
+  margin-left: 10px;
 
   &.state-label-green {
     background: #4A4;
@@ -132,4 +112,10 @@ pre.well-pre {
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
   background: #29b;
+}
+
+.breadcrumb > li + li:before {
+  content: "/";
+  padding: 0;
+  color: #666;
 }

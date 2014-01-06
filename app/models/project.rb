@@ -48,6 +48,7 @@ class Project < ActiveRecord::Base
   has_one :last_event, -> {order 'events.created_at DESC'}, class_name: 'Event', foreign_key: 'project_id'
   has_one :gitlab_ci_service, dependent: :destroy
   has_one :campfire_service, dependent: :destroy
+  has_one :emails_on_push_service, dependent: :destroy
   has_one :pivotaltracker_service, dependent: :destroy
   has_one :hipchat_service, dependent: :destroy
   has_one :flowdock_service, dependent: :destroy
@@ -80,7 +81,7 @@ class Project < ActiveRecord::Base
   delegate :members, to: :team, prefix: true
 
   # Validations
-  validates :creator, presence: true
+  validates :creator, presence: true, on: :create
   validates :description, length: { maximum: 2000 }, allow_blank: true
   validates :name, presence: true, length: { within: 0..255 },
             format: { with: Gitlab::Regex.project_name_regex,
@@ -116,6 +117,8 @@ class Project < ActiveRecord::Base
   scope :public_only, -> { where(visibility_level: PUBLIC) }
   scope :public_or_internal_only, ->(user) { where("visibility_level IN (:levels)", levels: user ? [ INTERNAL, PUBLIC ] : [ PUBLIC ]) }
 
+  scope :non_archived, -> { where(archived: false) }
+
   enumerize :issues_tracker, in: (Gitlab.config.issues_tracker.keys).append(:gitlab), default: :gitlab
 
   class << self
@@ -132,7 +135,7 @@ class Project < ActiveRecord::Base
     end
 
     def search query
-      joins(:namespace).where("projects.name LIKE :query OR projects.path LIKE :query OR namespaces.name LIKE :query OR projects.description LIKE :query", query: "%#{query}%")
+      joins(:namespace).where("projects.archived = ?", false).where("projects.name LIKE :query OR projects.path LIKE :query OR namespaces.name LIKE :query OR projects.description LIKE :query", query: "%#{query}%")
     end
 
     def find_with_namespace(id)
@@ -149,6 +152,16 @@ class Project < ActiveRecord::Base
 
     def visibility_levels
       Gitlab::VisibilityLevel.options
+    end
+
+    def sort(method)
+      case method.to_s
+      when 'newest' then reorder('projects.created_at DESC')
+      when 'oldest' then reorder('projects.created_at ASC')
+      when 'recently_updated' then reorder('projects.updated_at DESC')
+      when 'last_updated' then reorder('projects.updated_at ASC')
+      else reorder("namespaces.path, projects.name ASC")
+      end
     end
   end
 
@@ -235,7 +248,7 @@ class Project < ActiveRecord::Base
   end
 
   def available_services_names
-    %w(gitlab_ci campfire hipchat pivotaltracker flowdock assembla)
+    %w(gitlab_ci campfire hipchat pivotaltracker flowdock assembla emails_on_push)
   end
 
   def gitlab_ci?
@@ -322,14 +335,14 @@ class Project < ActiveRecord::Base
     c_ids = self.repository.commits_between(oldrev, newrev).map(&:id)
 
     # Update code for merge requests into project between project branches
-    mrs = self.merge_requests.opened.by_branch(branch_name).all
+    mrs = self.merge_requests.opened.by_branch(branch_name).to_a
     # Update code for merge requests between project and project fork
-    mrs += self.fork_merge_requests.opened.by_branch(branch_name).all
+    mrs += self.fork_merge_requests.opened.by_branch(branch_name).to_a
 
     mrs.each { |merge_request| merge_request.reload_code; merge_request.mark_as_unchecked }
 
     # Close merge requests
-    mrs = self.merge_requests.opened.where(target_branch: branch_name).all
+    mrs = self.merge_requests.opened.where(target_branch: branch_name).to_a
     mrs = mrs.select(&:last_commit).select { |mr| c_ids.include?(mr.last_commit.id) }
     mrs.each { |merge_request| merge_request.merge!(user.id) }
 
@@ -471,5 +484,18 @@ class Project < ActiveRecord::Base
 
   def visibility_level_field
     visibility_level
+  end
+
+  def archive!
+    update_attribute(:archived, true)
+  end
+
+  def unarchive!
+    update_attribute(:archived, false)
+  end
+
+  def change_head(branch)
+    gitlab_shell.update_repository_head(self.path_with_namespace, branch)
+    reload_default_branch
   end
 end

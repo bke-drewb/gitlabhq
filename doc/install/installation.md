@@ -14,7 +14,7 @@ This is the official installation guide to set up a production server. To set up
 
 The following steps have been known to work. Please **use caution when you deviate** from this guide. Make sure you don't violate any assumptions GitLab makes about its environment. For example many people run into permission problems because they changed the location of directories or run services as the wrong user.
 
-If you find a bug/error in this guide please **submit a pull request** following the [contributing guide](../../CONTRIBUTING.md).
+If you find a bug/error in this guide please **submit a merge request** following the [contributing guide](../../CONTRIBUTING.md).
 
 - - -
 
@@ -144,7 +144,7 @@ GitLab Shell is an ssh access and repository management software developed speci
     cd /home/git
 
     # Clone gitlab shell
-    sudo -u git -H git clone https://github.com/gitlabhq/gitlab-shell.git -b v1.7.9
+    sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b v1.8.0
 
     cd gitlab-shell
 
@@ -171,13 +171,13 @@ To setup the MySQL/PostgreSQL database and dependencies please see [`doc/install
 ## Clone the Source
 
     # Clone GitLab repository
-    sudo -u git -H git clone https://github.com/gitlabhq/gitlabhq.git -b 6-3-stable gitlab
+    sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 6-4-stable gitlab
 
     # Go to gitlab dir
     cd /home/git/gitlab
 
 **Note:**
-You can change `6-3-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
+You can change `6-4-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
 
 ## Configure it
 
@@ -303,15 +303,6 @@ Check if GitLab and its environment are configured correctly:
     # or
     sudo /etc/init.d/gitlab restart
 
-## Double-check Application Status
-
-To make sure you didn't miss anything run a more thorough check with:
-
-    sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
-
-If all items are green, then congratulations on successfully installing GitLab!
-However there are still a few steps left.
-
 
 ## Compile assets
 
@@ -322,7 +313,7 @@ However there are still a few steps left.
 
 **Note:**
 Nginx is the officially supported web server for GitLab. If you cannot or do not want to use Nginx as your web server, have a look at the
-[GitLab recipes](https://github.com/gitlabhq/gitlab-recipes).
+[GitLab recipes](https://gitlab.com/gitlab-org/gitlab-recipes/).
 
 ## Installation
     sudo apt-get install -y nginx
@@ -347,7 +338,17 @@ Make sure to edit the config file to match your setup:
 
 # Done!
 
-Visit YOUR_SERVER for your first GitLab login.
+## Double-check Application Status
+
+To make sure you didn't miss anything run a more thorough check with:
+
+    sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+
+If all items are green, then congratulations on successfully installing GitLab!
+
+## Initial Login
+
+Visit YOUR_SERVER in your web browser for your first GitLab login.
 The setup has created an admin account for you. You can use it to log in:
 
     admin@local.host
@@ -407,9 +408,9 @@ These steps are fairly general and you will need to figure out the exact details
 * Stop GitLab
 		`sudo service gitlab stop`
 
-* Add provider specific configuration options to your `config/gitlab.yml` (you can use the [auth providers section of the example config](https://github.com/gitlabhq/gitlabhq/blob/master/config/gitlab.yml.example) as a reference)
+* Add provider specific configuration options to your `config/gitlab.yml` (you can use the [auth providers section of the example config](https://gitlab.com/gitlab-org/gitlab-ce/blob/masterconfig/gitlab.yml.example) as a reference)
 
-* Add the gem to your [Gemfile](https://github.com/gitlabhq/gitlabhq/blob/master/Gemfile)
+* Add the gem to your [Gemfile](https://gitlab.com/gitlab-org/gitlab-ce/blob/masterGemfile)
                 `gem "omniauth-your-auth-provider"`
 * If you're using MySQL, install the new Omniauth provider gem by running the following command:
 		`sudo -u git -H bundle install --without development test postgres --path vendor/bundle --no-deployment`

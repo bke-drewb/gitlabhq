@@ -179,4 +179,20 @@ module ProjectsHelper
 
     title
   end
+
+  def default_url_to_repo
+    current_user ? @project.url_to_repo : @project.http_url_to_repo
+  end
+
+  def default_clone_protocol
+    current_user ? "ssh" : "http"
+  end
+
+  def project_last_activity(project)
+    if project.last_activity_at
+      time_ago_with_tooltip(project.last_activity_at, 'bottom', 'last_activity_time_ago')
+    else
+      "Never"
+    end
+  end
 end

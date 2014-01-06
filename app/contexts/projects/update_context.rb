@@ -9,14 +9,8 @@ module Projects
 
       new_branch = params[:project].delete(:default_branch)
 
-      if project.repository.exists? && new_branch != project.default_branch
-        GitlabShellWorker.perform_async(
-          :update_repository_head,
-          project.path_with_namespace,
-          new_branch
-        )
-
-        project.reload_default_branch
+      if project.repository.exists? && new_branch && new_branch != project.default_branch
+        project.change_head(new_branch)
       end
 
       project.update_attributes(params[:project], as: role)

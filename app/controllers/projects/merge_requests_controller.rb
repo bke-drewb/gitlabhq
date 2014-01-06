@@ -94,9 +94,15 @@ class Projects::MergeRequestsController < Projects::ApplicationController
       return
     end
 
+    # We dont allow change of source/target projects
+    # after merge request was created
+    params[:merge_request].delete(:source_project_id)
+    params[:merge_request].delete(:target_project_id)
+
     if @merge_request.update_attributes(params[:merge_request].merge(author_id_of_changes: current_user.id))
       @merge_request.reload_code
       @merge_request.mark_as_unchecked
+      @merge_request.reset_events_cache
       redirect_to [@merge_request.target_project, @merge_request], notice: 'Merge request was successfully updated.'
     else
       render "edit"
@@ -192,6 +198,9 @@ class Projects::MergeRequestsController < Projects::ApplicationController
   def define_show_vars
     # Build a note object for comment form
     @note = @project.notes.new(noteable: @merge_request)
+    @notes = @merge_request.mr_and_commit_notes.inc_author.fresh
+    @discussions = Note.discussions_from_notes(@notes)
+    @noteable = @merge_request
 
     # Get commits from repository
     # or from cache if already merged
@@ -199,9 +208,6 @@ class Projects::MergeRequestsController < Projects::ApplicationController
 
     @allowed_to_merge = allowed_to_merge?
     @show_merge_controls = @merge_request.opened? && @commits.any? && @allowed_to_merge
-
-    @target_type = :merge_request
-    @target_id = @merge_request.id
   end
 
   def allowed_to_merge?

@@ -1,13 +1,21 @@
 = render "home_panel"
 
 .row
-  .span9
+  .col-md-9
     = render "events/event_last_push", event: @last_push
     = render 'shared/event_filter'
     .content_list
     .loading.hide
-  .span3.project-side
+  .col-md-3.project-side.hidden-sm
     .clearfix
+      - if @project.archived?
+        .alert
+          %h5
+            %i.icon-warning-sign
+            Archived project!
+          %p Repository is read-only
+
+
       - if @project.forked_from_project
         .alert.alert-success
           %i.icon-code-fork.project-fork-icon

@@ -1,58 +1,39 @@
 /**
- * ===================================
- * Contain UI block elements:
+ * UI box:
+ * Block element for separating information on page.
+ * Used for storing issues lists, grouped data.
+ * You can have multiple ui boxes on one page
+ *
+ * Classes:
  *   .ui-box   - for any block & widgets
- * ===================================
- */
-
-/**
- * UI Block
+ *   .ui-box.ui-box-small - same but with smaller title
+ *   .ui-box.ui-box-danger - with red title
+ *
+ * Ex. 1: List
+ *   .ui-box
+ *     .title
+ *       # title here
+ *     %ul
+ *       # content here
+ *
+ * Ex. 2: Block data
+ *   .ui-box
+ *     .title
+ *       # title here
+ *     .body
+ *       # content here
  *
  */
+
 .ui-box {
   background: #FFF;
   margin-bottom: 20px;
   border: 1px solid #DDD;
   word-wrap: break-word;
 
-  &.small-box {
-    margin-bottom: 10px;
-
-    .title {
-      font-size: 13px;
-      line-height: 30px;
-
-      a {
-        color: #666;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+  img {
+    max-width: 100%;
   }
-
-  &.ui-box-show {
-    color: #666;
-    margin:20px 0;
-    background: #FAFAFA;
-
-    .control-group {
-      margin-bottom: 0;
-    }
-  }
-
-  &.ui-box-danger {
-    background: #f7f7f7;
-    border: none;
-
-    .title {
-      background: #D65;
-      color: #fff;
-      text-shadow: 0 1px 1px #900;
-    }
-  }
-
-  img { max-width: 100%; }
 
   pre {
     code {
@@ -60,41 +41,9 @@
     }
   }
 
-  .ui-box-head,
-  .ui-box-body,
-  .ui-box-bottom {
-    padding: 15px;
-
-    .clearfix {
-      margin: 0;
-    }
-  }
-
-  .ui-box-head {
-    .box-title {
-      font-size: 18px;
-      font-weight: normal;
-      line-height: 28px;
-      margin: 0;
-    }
-    h3 {
-      margin: 0;
-    }
-  }
-
-  .ui-box-body {
-    border: none;
-    background-color: #f5f5f5;
-    border: none;
-    border-top: 1px solid #eee;
-  }
-
-  .ui-box-bottom {
-    border-top: 1px solid #eee;
-  }
-
   ul {
     margin: 0;
+    padding: 0;
   }
 
   .title {
@@ -145,6 +94,10 @@
     }
   }
 
+  .body {
+    padding: 10px;
+  }
+
   &.padded {
     h5, .title {
       margin: -20px;
@@ -154,7 +107,7 @@
   }
 
   .row_title {
-    font-weight: bold;
+    font-weight: 500;
     color: #444;
     &:hover {
       color: #444;
@@ -176,13 +129,45 @@
   }
 }
 
+/*
+ * Small box
+ */
+.ui-box.ui-box-small {
+  margin-bottom: 10px;
+
+  .title {
+    font-size: 13px;
+    line-height: 30px;
+
+    a {
+      color: #666;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/*
+ * Danger box
+ */
+.ui-box.ui-box-danger {
+  background: #f7f7f7;
+  border: none;
+
+  .title {
+    background: #D65;
+    color: #fff;
+    text-shadow: none;
+    font-weight: 500;
+  }
+}
+
+/*
+ * Block under tw-bootstrap tabs
+ */
 .tab-pane {
   .ui-box {
     margin: 3px 3px 25px 3px;
   }
-}
-
-.light-well {
-  background: #f9f9f9;
-  padding: 15px;
 }

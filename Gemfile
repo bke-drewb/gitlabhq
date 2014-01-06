@@ -30,7 +30,7 @@ gem 'omniauth-github'
 
 # Extracting information from a git repository
 # Provide access to Gitlab::Git library
-gem "gitlab_git", "~> 4.0.0.pre"
+gem "gitlab_git", "~> 4.0.0"
 
 # Ruby/Rack Git Smart-HTTP Server Handler
 gem 'gitlab-grack', '~> 2.0.0.pre', require: 'grack'
@@ -79,13 +79,16 @@ gem "seed-fu"
 
 # Markdown to HTML
 gem "redcarpet",     "~> 2.2.2"
-gem "github-markup", "~> 0.7.4", require: 'github/markup'
+gem "github-markup", "~> 0.7.4", require: 'github/markup', git: 'https://github.com/gitlabhq/markup.git', ref: '61ade389c1e1c159359338f570d18464a44ddbc4' 
 
 # Asciidoc to HTML
 gem  "asciidoctor"
 
 # Application server
-gem "unicorn", '~> 4.6.3', group: :unicorn
+group :unicorn do
+  gem "unicorn", '~> 4.6.3'
+  gem 'unicorn-worker-killer'
+end
 
 # State machine
 gem "state_machine"
@@ -148,10 +151,10 @@ gem "jquery-rails",     "2.1.3"
 gem "jquery-ui-rails",  "2.0.2"
 gem "modernizr",        "2.6.2"
 gem "raphael-rails", "~> 2.1.2"
-gem 'bootstrap-sass', '~> 2.3'
+gem 'bootstrap-sass', '~> 3.0'
 gem "font-awesome-rails", '~> 3.2'
 gem "gemoji", "~> 1.3.0"
-gem "gon", git: "https://github.com/gitlabhq/gon.git", ref: '58ca8e17273051cb370182cabd3602d1da6783ab'
+gem "gon", '~> 5.0.0'
 
 group :development do
   gem "annotate", "~> 2.6.0.beta2"
