@@ -54,7 +54,11 @@
   }
   .event-body {
     margin-left: 35px;
-    margin-right: 100px;
+
+    // Set right margin except on xs devices
+    @media (min-width: $screen-xs-max) {
+      margin-right: 100px;
+    }
 
     .event-info {
       color: #666;
