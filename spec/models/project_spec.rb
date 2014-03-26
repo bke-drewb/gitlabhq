@@ -73,8 +73,15 @@ describe Project do
     it "should not allow new projects beyond user limits" do
       project2 = build(:project)
       project2.stub(:creator).and_return(double(can_create_project?: false, projects_limit: 0).as_null_object)
+      project2.stub(:namespace).and_return(double(kind: 'user').as_null_object)
       project2.should_not be_valid
       project2.errors[:limit_reached].first.should match(/Your own projects limit is 0/)
+    end
+    it "should allow new projects beyond user limits if group project" do
+      project2 = build(:project)
+      project2.stub(:creator).and_return(double(can_create_project?: false, projects_limit: 0).as_null_object)
+      project2.stub(:namespace).and_return(double(kind: 'group').as_null_object)
+      project2.should be_valid
     end
   end
 
