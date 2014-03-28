@@ -146,7 +146,9 @@ form.edit-issue {
 
 @media (max-width: $screen-xs-max) {
   .issue-btn-group {
+    width: 100%;
     margin-top: 5px;
+
     .btn {
       width: 100%;
       margin-top: -1px;
