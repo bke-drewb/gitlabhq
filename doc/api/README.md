@@ -9,6 +9,7 @@
 + [Repositories](repositories.md)
 + [Repository Files](repository_files.md)
 + [Commits](commits.md)
++ [Branches](branches.md)
 + [Merge Requests](merge_requests.md)
 + [Issues](issues.md)
 + [Milestones](milestones.md)
@@ -128,6 +129,10 @@ When listing resources you can pass the following parameters:
 
 + `page` (default: `1`) - page number
 + `per_page` (default: `20`, max: `100`) - number of items to list per page
+
+[Link headers](http://www.w3.org/wiki/LinkHeader) are send back with each response.
+These have `rel` prev/next/first/last and contain the relevant url.
+Please use these instead of generating your own urls.
 
 ## id vs iid
 
