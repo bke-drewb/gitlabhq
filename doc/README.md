@@ -15,6 +15,7 @@
 + [Raketasks](raketasks/README.md) Explore what GitLab has in store for you to make administration easier.
 + [System hooks](system_hooks/system_hooks.md) Let GitLab notify you when certain management tasks need to be carried out.
 + [Security](security/README.md) Learn what you can do to further secure your GitLab instance.
++ [Authentication](authentication/README.md) Instructions on setting up external authentication with omniauth (Twitter, Google, GitHub, etc).
 + [Update](update/README.md) Update guides to upgrade your installation.
 
 **Contributor documentation**
